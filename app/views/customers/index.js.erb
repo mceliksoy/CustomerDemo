@@ -1,0 +1,8 @@
+<% if @ajax_search == true %>
+  $('#table_div').html('<%= escape_javascript(render("customers_table")) %>');
+<% else %>
+  $('#body_content').html('<%= escape_javascript(render("index")) %>');
+<% end %>  
+  
+$('#messages').html('<%= escape_javascript(render("/layouts/messages")) %>');
+

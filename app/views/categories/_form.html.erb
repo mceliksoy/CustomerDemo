@@ -1,0 +1,27 @@
+<%= form_for(@category, :remote => true, :html => { :class => "form-horizontal"} ) do |f| %>
+    <% if @category.errors.any? %>
+        <div class="alert alert-block alert-error">
+            <h2>Oops !</h2>
+            <ul>
+                <% @category.errors.full_messages.each do |msg| %>
+                <li>
+                    <%= msg %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group <%= 'error' if @category.errors[:name].present? %>">
+        <label for="name" class="control-label">Name</label>
+        <div class="controls">
+            <%= f.text_field :name, :maxlength => "100" %>
+        </div>
+    </div>
+    <div class="actions">
+        <%= f.submit :class => "btn btn-primary", :value => "Save" %>
+        <%= link_to :back, :remote => true, :type => "reset", :class => "btn" do%>
+        <i class="icon-chevron-left"></i>Cancel
+        <% end %>
+    </div>
+<% end %> 

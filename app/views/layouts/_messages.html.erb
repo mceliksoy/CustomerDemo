@@ -1,0 +1,14 @@
+<%- flash.each do |key, msg| -%>
+  <div id="msg_<%= key %>" class="alert alert-<%= key %> fade in">
+    <a class="close" data-dismiss="alert" href="#">&times;</a>
+    <p>
+      <%= msg %><br>
+    </p>    
+  </div>
+  
+  <script type="text/javascript">
+    if('<%= key %>' != 'error') {
+      $('#msg_<%= key %>').delay(1000).fadeOut(1000);
+    }
+  </script>
+<%- end -%>

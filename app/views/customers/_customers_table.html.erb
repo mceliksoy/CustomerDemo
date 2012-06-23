@@ -1,0 +1,50 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-striped table-bordered table-condensed sortable">
+    <thead>
+        <tr>
+            <th style="width: 300px;"><%= sortable "company_name", "Company Name"%></th>
+            <th> First Name </th>
+            <th> Last Name </th>
+            <th> Category </th>
+            <th style="width: 40px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @customers.each do |customer| %>
+        <tr>
+            <td valign="top"> 
+                <%= link_to customer.company_name, edit_customer_path(customer), :remote => true %> 
+            </td>
+            <td valign="top"> 
+                <%= customer.contact_first_name %> 
+            </td>
+            <td valign="top"> 
+                <%= customer.contact_last_name %> 
+            </td>
+            <td valign="top"> 
+                <%= customer.category.name if customer.category %> 
+            </td>
+            <td valign="top"> 
+                <%= link_to edit_customer_path(customer), :remote => true, :style=>'height: 14px;', :title=>'Edit' do%> 
+                    <i class="icon-edit"></i> 
+                <% end %> 
+                
+                <a style="height: 14px; padding-left: 5px;" title="Delete"
+                    data-backdrop="static" data-keyboard="true"
+                    href="javascript:;"
+                    onclick="show_confirm_modal('<%= customer_path(customer) %>',
+                    'Are you sure you want to delete the customer : <%= customer.company_name%>');"> 
+                    <i class="icon-remove"></i> 
+                </a>
+           </td>
+        </tr>
+        <% end %>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5"> <%= will_paginate @customers%> </td>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,31 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree .
+ */
+
+
+
+
+
+/* search box */
+.search-box {
+display: inline-block;
+height: 24px;
+padding-left: 10px;
+margin-right: 25px;
+vertical-align: top;
+width: 180px;
+}
+
+.search-box input {
+background: url("/assets/search.png") no-repeat scroll 5px center padding-box #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.33);
+border-radius: 12px 12px 12px 12px;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 0.33);
+height: 20px;
+padding: 3px 5px 3px 20px !important;
+width: 100%;
+}

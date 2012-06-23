@@ -1,0 +1,159 @@
+<%= form_for(@customer, :remote => true, :html => { :class => "form-horizontal"} ) do |f| %>
+<% if @customer.errors.any? %>
+<div class="alert alert-block alert-error">
+    <h2>Oops !</h2>
+    <ul>
+        <% @customer.errors.full_messages.each do |msg| %>
+        <li>
+            <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<ul class="nav nav-tabs" id="tabs">
+    <li class="active">
+        <a href="#general">General</a>
+    </li>
+    <li class="">
+        <a href="#address">Address</a>
+    </li>
+    <li class="">
+        <a href="#communication">Communication</a>
+    </li>
+    <li class="">
+        <a href="#notes">Notes</a>
+    </li>
+</ul>
+<div class="tab-content" id="my-tab-content">
+    <div id="general" class="tab-pane active">
+        <div class="control-group <%= 'error' if @customer.errors[:company_name].present? %>">
+            <label for="company_name" class="control-label"> Company Name </label>
+            <div class="controls">
+                <%= f.text_field :company_name, :class => "input-xlarge", :maxlength => "100" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="category_id" class="control-label">Category</label>
+            <div class="controls">
+                <%= f.select :category_id, Category.all.collect{|c| [ c.name, c.id ] }, :prompt => 'Select Category' %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="contact_title" class="control-label">Title</label>
+            <div class="controls">
+                <%= f.text_field :contact_title, :class => "input-small", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group <%= 'error' if @customer.errors[:contact_first_name].present? %>">
+            <label for="contact_first_name" class="control-label">First Name</label>
+            <div class="controls">
+                <%= f.text_field :contact_first_name, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group <%= 'error' if @customer.errors[:contact_last_name].present? %>">
+            <label for="contact_last_name" class="control-label">Last Name</label>
+            <div class="controls">
+                <%= f.text_field :contact_last_name, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+    </div>
+    <div id="address" class="tab-pane">
+        <div class="control-group">
+            <label for="address" class="control-label">Address</label>
+            <div class="controls">
+                <%= f.text_area :address, :rows => 3, :cols => 40, :class => "input-xlarge" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="city" class="control-label">City</label>
+            <div class="controls">
+                <%= f.text_field :city, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="region" class="control-label">State/Province</label>
+            <div class="controls">
+                <%= f.text_field :region, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="postal_code" class="control-label">ZIP/Postal Code</label>
+            <div class="controls">
+                <%= f.text_field :postal_code, :class => "input-small" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="country_id" class="control-label">Country</label>
+            <div class="controls">
+                <%= f.select :country_id, Country.all.collect{|c| [ c.name, c.id ] }, :prompt => 'Select Country' %>
+            </div>
+        </div>
+    </div>
+    <div id="communication" class="tab-pane">
+        <div class="control-group">
+            <label for="phone" class="control-label">Phone</label>
+            <div class="controls">
+                <%= f.text_field :phone, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="fax" class="control-label">Fax</label>
+            <div class="controls">
+                <%= f.text_field :fax, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="mobile" class="control-label">Mobile</label>
+            <div class="controls">
+                <%= f.text_field :mobile, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="email" class="control-label">E-Mail</label>
+            <div class="controls">
+                <div class="input-prepend">
+                    <span class="add-on">@</span>
+                    <%= f.email_field :email, :class => "span2", :style => "width: 254px; float:right;", :maxlength => "50" %>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="homepage" class="control-label">Homepage</label>
+            <div class="controls">
+                <%= f.text_field :homepage, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="skype" class="control-label">Skype</label>
+            <div class="controls">
+                <%= f.text_field :skype, :class => "input-xlarge", :maxlength => "50" %>
+            </div>
+        </div>
+    </div>
+    <div id="notes" class="tab-pane">
+        <div class="control-group">
+            <label for="notes" class="control-label">Notes</label>
+            <div class="controls">
+                <%= f.text_area :notes, :rows => 10, :cols => 40, :class => "input-xlarge" %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <%= f.submit :class => "btn btn-primary", :value => "Save"%>
+        
+    <%= link_to :back, :remote => true, :type => "reset", :class => "btn" do%>
+        <i class="icon-chevron-left"></i>Cancel
+    <% end %>     
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#tabs a').click(function(e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    })
+
+</script>
+<% end %> 

@@ -1,0 +1,14 @@
+<div class="page-header">
+    <h1 class="pull-left">Edit Category</h1>
+    <div class="pull-right">
+        <%= link_to new_category_path, :remote => true,
+        :class => "btn btn-primary", :style => "margin-right:10px; height:15px;" do%>
+        <i class="icon-star icon-white"></i> Add New Category
+        <% end %>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <%= render 'form' %>
+    </div>
+</div>

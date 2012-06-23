@@ -1,0 +1,23 @@
+<%= render '/layouts/confirm_modal'%>
+
+<%= form_tag  customers_path, :method => 'get', :id => "ajax_search_form" do %>
+<div class="page-header">
+    <h1 class="pull-left">Customers</h1>
+    <div class="pull-right">
+        <%= link_to new_customer_path, :remote => true,
+        :class => "btn btn-primary", :style => "margin-right:10px; height:15px;" do%>
+            <i class="icon-star icon-white"></i> Add New Customer
+        <% end %>
+
+        <div id="quicksearch" class="search-box">
+            <%= text_field_tag :search, params[:search], :placeholder => "Search"  %>
+        </div>
+        <%= hidden_field_tag :ajax_search, "true" %>
+    </div>
+</div>
+<div class="row-fluid">
+    <div id="table_div" class="span12">
+        <%= render :partial => 'customers_table' %>
+    </div>
+</div>
+<% end %>

@@ -1,0 +1,7 @@
+<% if @ajax_search == true %>
+  $('#table_div').html('<%= escape_javascript(render("countries_table")) %>').force_encoding("UTF-8");
+<% else %>
+  $('#body_content').html('<%= escape_javascript(render("index")) %>').force_encoding("UTF-8");
+<% end %>  
+
+$('#messages').html('<%= escape_javascript(render("/layouts/messages")) %>').force_encoding("UTF-8");

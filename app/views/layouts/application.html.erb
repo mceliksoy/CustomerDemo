@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CustomeR APP</title>
+        <%= javascript_include_tag "application" %>
+        <%= stylesheet_link_tag    "application" %>
+        <%= csrf_meta_tags %>
+
+        <style type="text/css">
+            html, body {
+                background-color: #eee;
+            }
+
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+
+            .container > footer p {
+                text-align: center; /* center align it with the container */
+            }
+            .container {
+                width: 900px;
+            }
+            /* The white background content wrapper */
+            .container > .content {
+                background-color: #fff;
+                padding: 20px;
+                margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+                -webkit-border-radius: 0 0 6px 6px;
+                -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            }
+            
+            /* Page header tweaks */
+            .page-header {
+                background-color: #f5f5f5;
+                padding: 20px 20px 10px;
+                margin: -20px -20px 20px;
+                height: 40px;                       
+            }
+            
+            /* Give a quick and non-cross-browser friendly divider */
+            .dashboard-divider {
+                margin-left: 0;
+                padding-left: 19px;
+                border-left: 1px solid #eee;
+            }            
+                        
+        </style>
+
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">Customers App</a>
+
+                    <div class="btn-group pull-right">
+                        <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"> <i class="icon-user"></i> Username <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <%= link_to "Customers", customers_url%>
+                            </li>
+                            <li>
+                                <%= link_to "Categories", categories_url%>
+                            </li>
+                            <li>
+                                <%= link_to "Countries", countries_url%>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id ="messages">
+                <%= render '/layouts/messages' %>
+            </div>
+            <div id="body_content" class="content">
+                <%= yield %>
+            </div>
+            <footer>
+                <p>
+                    Rails, MySQL, Bootstrap, from Twitter Customer App Demo
+                </p>
+            </footer>
+        </div>
+        <!-- /container -->
+    </body>
+</html>
