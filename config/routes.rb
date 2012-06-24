@@ -1,7 +1,5 @@
 CustomeR::Application.routes.draw do
   
-  resources :orders
-
   # match "categories",         :to => "categories#index",  :via => "get"
   # match "categories/new",     :to => "categories#new",    :via => "get"
   # match "categories/:id/edit",:to => "categories#edit",   :via => "get"
